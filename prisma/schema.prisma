@@ -1,13 +1,13 @@
 datasource db {
     provider = "postgresql"
-    url      = "postgresql://user:password@localhost:5432/database"
+    url      = "postgresql://postgres:root@localhost:5432/database"
 }
 
 model User {
     id           Int           @id @default(autoincrement())
     username     String        @unique
     password     String
-    email        String
+    email        String        @unique
     createdAt    DateTime      @default(now())
     sessions     Session[]
     transactions Transaction[]
@@ -20,7 +20,6 @@ model Session {
     user_id   Int
     token     String
     createdAt DateTime @default(now())
-    expiresAt DateTime
 
     user User @relation(fields: [user_id], references: [id])
 }
