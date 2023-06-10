@@ -70,6 +70,7 @@ describe('POST /users', () => {
         expect.objectContaining({
           id: response.body.id,
           email: body.email,
+          username: body.username,
         }),
       );
     });
