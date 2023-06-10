@@ -1,6 +1,6 @@
 import faker from '@faker-js/faker';
 import bcrypt from 'bcrypt';
-import { createUser as createUserSeed, createEvent as createEventSeed } from '../factories';
+import { createUser as createUserSeed } from '../factories';
 import { cleanDb } from '../helpers';
 import userService, { duplicatedEmailError } from '@/services/users-service';
 import { prisma } from '@/config';
@@ -14,12 +14,12 @@ beforeAll(async () => {
 describe('createUser', () => {
   it('should throw duplicatedUserError if there is a user with given email', async () => {
     const existingUser = await createUserSeed();
-    await createEventSeed();
 
     try {
       await userService.createUser({
         email: existingUser.email,
         password: faker.internet.password(6),
+        username: faker.name.firstName(),
       });
       fail('should throw duplicatedUserError');
     } catch (error) {
@@ -31,6 +31,7 @@ describe('createUser', () => {
     const user = await userService.createUser({
       email: faker.internet.email(),
       password: faker.internet.password(6),
+      username: faker.name.firstName(),
     });
 
     const dbUser = await prisma.user.findUnique({
@@ -51,6 +52,7 @@ describe('createUser', () => {
     const user = await userService.createUser({
       email: faker.internet.email(),
       password: rawPassword,
+      username: faker.name.firstName(),
     });
 
     const dbUser = await prisma.user.findUnique({

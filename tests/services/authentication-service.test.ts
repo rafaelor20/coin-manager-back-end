@@ -66,7 +66,7 @@ describe('signIn', () => {
       const session = await prisma.session.findFirst({
         where: {
           token: createdSessionToken,
-          userId: user.id,
+          user_id: user.id,
         },
       });
       expect(session).toBeDefined();
