@@ -24,7 +24,7 @@ async function validateUniqueEmailOrFail(email: string) {
 }
 
 async function validateUniqueUername(username: string) {
-  const userWithSameUsername = await userRepository.findByEmail(username);
+  const userWithSameUsername = await userRepository.findByUserName(username);
   if (userWithSameUsername) {
     throw invalidDataError([username]);
   }
