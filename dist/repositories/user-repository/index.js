@@ -12,6 +12,17 @@ async function findByEmail(email, select) {
     }
     return config_1.prisma.user.findUnique(params);
 }
+async function findByUserName(username, select) {
+    const params = {
+        where: {
+            username,
+        },
+    };
+    if (select) {
+        params.select = select;
+    }
+    return config_1.prisma.user.findUnique(params);
+}
 async function create(data) {
     return config_1.prisma.user.create({
         data,
@@ -19,6 +30,7 @@ async function create(data) {
 }
 const userRepository = {
     findByEmail,
+    findByUserName,
     create,
 };
 exports.default = userRepository;

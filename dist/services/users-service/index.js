@@ -20,9 +20,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUser = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const errors_1 = require("./errors");
+const errors_2 = require("../../errors/index");
 const user_repository_1 = __importDefault(require("../../repositories/user-repository/index"));
 async function createUser({ username, email, password }) {
     await validateUniqueEmailOrFail(email);
+    await validateUniqueUername(username);
     const hashedPassword = await bcrypt_1.default.hash(password, 12);
     return user_repository_1.default.create({
         username,
@@ -35,6 +37,12 @@ async function validateUniqueEmailOrFail(email) {
     const userWithSameEmail = await user_repository_1.default.findByEmail(email);
     if (userWithSameEmail) {
         throw (0, errors_1.duplicatedEmailError)();
+    }
+}
+async function validateUniqueUername(username) {
+    const userWithSameUsername = await user_repository_1.default.findByUserName(username);
+    if (userWithSameUsername) {
+        throw (0, errors_2.invalidDataError)([username]);
     }
 }
 const userService = {
