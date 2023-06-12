@@ -1,10 +1,9 @@
-// prisma/seed.ts
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  // Create users
+  
   const user1 = await prisma.user.create({
     data: {
       username: 'user1',
