@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { authenticateToken } from '@/middlewares';
-import { getHistoric } from '@/controllers/transaction-controller';
+import { getHistoric, storeTransaction } from '@/controllers/transaction-controller';
 
 const transactionRouter = Router();
 
-transactionRouter.all('/*', authenticateToken).get('/historic', getHistoric);
+transactionRouter.all('/*', authenticateToken).get('/historic', getHistoric).post('/store', storeTransaction);
 
 export { transactionRouter };

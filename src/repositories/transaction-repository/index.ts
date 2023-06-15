@@ -7,8 +7,13 @@ async function getHistoric(userId: number) {
   });
 }
 
+async function storeTransaction(data: Prisma.TransactionUncheckedCreateInput) {
+  return prisma.transaction.create({ data });
+}
+
 const transactionRepository = {
   getHistoric,
+  storeTransaction,
 };
 
 export default transactionRepository;
