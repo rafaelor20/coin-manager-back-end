@@ -37,22 +37,24 @@ model Transaction {
 
 model UserDebt {
     id        Int       @id @default(autoincrement())
-    UserId    User      @relation(fields: [user_id], references: [id])
     user_id   Int
     creditor  String?
     amount    Float
     createdAt DateTime  @default(now())
     paidAt    DateTime?
+
+    user User @relation(fields: [user_id], references: [id])
 }
 
 model UserCredit {
     id        Int       @id @default(autoincrement())
-    UserId    User      @relation(fields: [user_id], references: [id])
     user_id   Int
     debtor    String?
     amount    Float
     createdAt DateTime  @default(now())
     paidAt    DateTime?
+
+    user User @relation(fields: [user_id], references: [id])
 }
 
 generator client {
