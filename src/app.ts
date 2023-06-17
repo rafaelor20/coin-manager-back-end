@@ -8,7 +8,7 @@ import { loadEnv, connectDb, disconnectDB } from '@/config';
 loadEnv();
 
 import { handleApplicationErrors } from '@/middlewares';
-import { usersRouter, authenticationRouter, transactionRouter } from '@/routers';
+import { usersRouter, authenticationRouter, transactionRouter, debtRouter, creditRouter } from '@/routers';
 
 const app = express();
 app
@@ -18,6 +18,8 @@ app
   .use('/users', usersRouter)
   .use('/auth', authenticationRouter)
   .use('/transactions', transactionRouter)
+  .use('/debts', debtRouter)
+  .use('/credits', creditRouter)
   .use(handleApplicationErrors);
 
 export function init(): Promise<Express> {

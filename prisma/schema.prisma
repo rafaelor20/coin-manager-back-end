@@ -41,7 +41,7 @@ model UserDebt {
     creditor  String?
     amount    Float
     createdAt DateTime  @default(now())
-    paidAt    DateTime?
+    paidDate  DateTime?
 
     user User @relation(fields: [user_id], references: [id])
 }
@@ -52,7 +52,7 @@ model UserCredit {
     debtor    String?
     amount    Float
     createdAt DateTime  @default(now())
-    paidAt    DateTime?
+    payDate   DateTime?
 
     user User @relation(fields: [user_id], references: [id])
 }
