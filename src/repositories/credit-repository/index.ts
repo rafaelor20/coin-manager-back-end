@@ -7,8 +7,13 @@ async function getCredits(userId: number) {
   });
 }
 
+async function storeCredit(data: Prisma.UserCreditUncheckedCreateInput) {
+  return prisma.userCredit.create({ data });
+}
+
 const creditRepository = {
   getCredits,
+  storeCredit,
 };
 
 export default creditRepository;

@@ -7,12 +7,13 @@ async function getDebts(userId: number) {
   });
 }
 
-async function storeTransaction(data: Prisma.TransactionUncheckedCreateInput) {
-  return prisma.transaction.create({ data });
+async function storeDebt(data: Prisma.UserDebtUncheckedCreateInput) {
+  return prisma.userDebt.create({ data });
 }
 
 const debtRepository = {
   getDebts,
+  storeDebt,
 };
 
 export default debtRepository;

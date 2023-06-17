@@ -106,7 +106,6 @@ describe('POST /transactions/store', () => {
         description: transaction.description,
         amount: transaction.amount,
         date: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z$/),
-        //date: transaction.date.toISOString(),
         category: transaction.category,
       });
     });

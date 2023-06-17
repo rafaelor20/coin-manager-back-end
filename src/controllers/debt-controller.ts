@@ -12,3 +12,14 @@ export async function getDebts(req: AuthenticatedRequest, res: Response, next: N
     next(error);
   }
 }
+
+export async function storeDebt(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+  try {
+    const { userId } = req;
+    const { user_id, creditor, amount, payDate } = req.body;
+    const debt = await debtService.storeDebt(userId, { user_id, creditor, amount, payDate });
+    return res.status(httpStatus.CREATED).send(debt);
+  } catch (error) {
+    next(error);
+  }
+}
