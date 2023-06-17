@@ -8,7 +8,6 @@ export async function createTransaction(params: Partial<User> = {}): Promise<Tra
       user_id: params.id || 12,
       description: faker.word.preposition(),
       amount: 3214,
-      //date: faker.date.soon(),
       category: faker.word.adverb(),
     },
   });
