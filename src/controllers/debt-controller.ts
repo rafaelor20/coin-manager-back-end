@@ -13,12 +13,34 @@ export async function getDebts(req: AuthenticatedRequest, res: Response, next: N
   }
 }
 
+export async function getDebtById(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+  try {
+    const { userId } = req;
+    const debtId = Number(req.params.debtId);
+    const debt = await debtService.getDebtById(userId, debtId);
+    return res.status(httpStatus.OK).send(debt);
+  } catch (error) {
+    next(error);
+  }
+}
+
 export async function storeDebt(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   try {
     const { userId } = req;
     const { user_id, creditor, amount, payDate } = req.body;
     const debt = await debtService.storeDebt(userId, { user_id, creditor, amount, payDate });
     return res.status(httpStatus.CREATED).send(debt);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function removeDebt(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+  try {
+    const { userId } = req;
+    const debtId = Number(req.params.debtId);
+    const debt = await debtService.removeDebt(userId, debtId);
+    return res.status(httpStatus.OK).send(debt);
   } catch (error) {
     next(error);
   }

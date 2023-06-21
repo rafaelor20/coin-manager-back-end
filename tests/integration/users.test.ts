@@ -1,16 +1,17 @@
 import { faker } from '@faker-js/faker';
-import dayjs from 'dayjs';
 import httpStatus from 'http-status';
 import supertest from 'supertest';
 import { cleanDb } from '../helpers';
-import { createUser } from '../factories';
-import { duplicatedEmailError } from '@/services/users-service';
 import { prisma } from '@/config';
-import app, { init } from '@/app';
+import app, { init, close } from '@/app';
 
 beforeAll(async () => {
   await init();
   await cleanDb();
+});
+
+afterAll(async () => {
+  await close();
 });
 
 const server = supertest(app);

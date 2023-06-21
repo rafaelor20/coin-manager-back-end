@@ -1,9 +1,13 @@
 import httpStatus from 'http-status';
 import supertest from 'supertest';
-import app, { init } from '@/app';
+import app, { init, close } from '@/app';
 
 beforeAll(async () => {
   await init();
+});
+
+afterAll(async () => {
+  await close();
 });
 
 const server = supertest(app);

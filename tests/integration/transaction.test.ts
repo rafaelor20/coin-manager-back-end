@@ -4,8 +4,7 @@ import httpStatus from 'http-status';
 import supertest from 'supertest';
 import { cleanDb, generateValidToken } from '../helpers';
 import { createUser, createTransaction } from '../factories';
-import { prisma } from '@/config';
-import app, { init } from '@/app';
+import app, { init, close } from '@/app';
 
 beforeAll(async () => {
   await init();
@@ -13,8 +12,11 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  await init();
   await cleanDb();
+});
+
+afterAll(async () => {
+  await close();
 });
 
 const server = supertest(app);

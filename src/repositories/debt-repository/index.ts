@@ -7,6 +7,18 @@ async function getDebts(userId: number) {
   });
 }
 
+async function getDebtById(id: number) {
+  return prisma.userDebt.findUnique({
+    where: { id: id },
+  });
+}
+
+async function removeDebtById(id: number) {
+  return prisma.userDebt.delete({
+    where: { id: id },
+  });
+}
+
 async function storeDebt(data: Prisma.UserDebtUncheckedCreateInput) {
   return prisma.userDebt.create({ data });
 }
@@ -14,6 +26,8 @@ async function storeDebt(data: Prisma.UserDebtUncheckedCreateInput) {
 const debtRepository = {
   getDebts,
   storeDebt,
+  getDebtById,
+  removeDebtById,
 };
 
 export default debtRepository;
