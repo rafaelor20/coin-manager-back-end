@@ -7,6 +7,18 @@ async function getCredits(userId: number) {
   });
 }
 
+async function getCreditById(id: number) {
+  return prisma.userCredit.findUnique({
+    where: { id: id },
+  });
+}
+
+async function removeCreditById(id: number) {
+  return prisma.userCredit.delete({
+    where: { id: id },
+  });
+}
+
 async function storeCredit(data: Prisma.UserCreditUncheckedCreateInput) {
   return prisma.userCredit.create({ data });
 }
@@ -14,6 +26,8 @@ async function storeCredit(data: Prisma.UserCreditUncheckedCreateInput) {
 const creditRepository = {
   getCredits,
   storeCredit,
+  getCreditById,
+  removeCreditById,
 };
 
 export default creditRepository;
