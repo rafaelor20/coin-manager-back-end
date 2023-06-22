@@ -19,6 +19,9 @@ app
     .get('/health', (_req, res) => res.send('OK!'))
     .use('/users', routers_1.usersRouter)
     .use('/auth', routers_1.authenticationRouter)
+    .use('/transactions', routers_1.transactionRouter)
+    .use('/debts', routers_1.debtRouter)
+    .use('/credits', routers_1.creditRouter)
     .use(middlewares_1.handleApplicationErrors);
 function init() {
     (0, config_1.connectDb)();
