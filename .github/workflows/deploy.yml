@@ -2,8 +2,8 @@ on:
     push:
       branches:
         - main
-  name: Build and Deploy on AWS
-  jobs:
+name: Build and Deploy on AWS
+jobs:
     build:
       runs-on: self-hosted
       timeout-minutes: 10
