@@ -27,10 +27,9 @@
     "dev": "cross-env NODE_ENV=development nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register ./src/server.ts' -e ts"
   },
   "keywords": [
-    "driven.t",
+    "coin_manager",
     "back-end",
     "typescript",
-    "driven",
     "postgres",
     "express",
     "nodejs"
