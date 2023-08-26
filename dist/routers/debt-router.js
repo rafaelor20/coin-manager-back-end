@@ -6,4 +6,9 @@ const middlewares_1 = require("../middlewares/index");
 const debt_controller_1 = require("../controllers/debt-controller");
 const debtRouter = (0, express_1.Router)();
 exports.debtRouter = debtRouter;
-debtRouter.all('/*', middlewares_1.authenticateToken).get('/', debt_controller_1.getDebts).post('/store', debt_controller_1.storeDebt);
+debtRouter
+    .all('/*', middlewares_1.authenticateToken)
+    .get('/', debt_controller_1.getDebts)
+    .get('/:debtId', debt_controller_1.getDebtById)
+    .post('/store', debt_controller_1.storeDebt)
+    .delete('/delete/:debtId', debt_controller_1.removeDebt);

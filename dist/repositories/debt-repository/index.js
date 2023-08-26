@@ -6,11 +6,23 @@ async function getDebts(userId) {
         where: { user_id: userId },
     });
 }
+async function getDebtById(id) {
+    return config_1.prisma.userDebt.findUnique({
+        where: { id: id },
+    });
+}
+async function removeDebtById(id) {
+    return config_1.prisma.userDebt.delete({
+        where: { id: id },
+    });
+}
 async function storeDebt(data) {
     return config_1.prisma.userDebt.create({ data });
 }
 const debtRepository = {
     getDebts,
     storeDebt,
+    getDebtById,
+    removeDebtById,
 };
 exports.default = debtRepository;
