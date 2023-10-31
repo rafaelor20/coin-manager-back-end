@@ -7,6 +7,68 @@ Back-end for coin manager, an event management solution.
 coin manager is personal finance management app that provides a simple
 way to streamline your finances, tracking your income and expenses
 
+link for the frontend of the project:
+https://github.com/rafaelor20/coin-manager-front-end
+
+## Diagram Classes
+
+```mermaid
+
+classDiagram
+    class User {
+        +id: Int
+        +username: String
+        +password: String
+        +email: String
+        +createdAt: DateTime
+        +sessions: Session[]
+        +transactions: Transaction[]
+        +userDebts: UserDebt[]
+        +userCredits: UserCredit[]
+    }
+
+    class Session {
+        +id: Int
+        +userId: Int
+        +token: String
+        +createdAt: DateTime
+    }
+
+    class Transaction {
+        +id: Int
+        +userId: Int
+        +description: String
+        +amount: Float
+        +date: DateTime
+        +category: String
+    }
+
+    class UserDebt {
+        +id: Int
+        +userId: Int
+        +creditor: String
+        +amount: Float
+        +createdAt: DateTime
+        +payDate: DateTime
+    }
+
+    class UserCredit {
+        +id: Int
+        +userId: Int
+        +debtor: String
+        +amount: Float
+        +createdAt: DateTime
+        +payDate: DateTime
+    }
+
+    User "1" --o "1..*" Session : has
+    User "1" --o "1..*" Transaction : has
+    User "1" --o "1..*" UserDebt : has
+    User "1" --o "1..*" UserCredit : has
+
+
+```
+
 ## How to run for development
 
 1. Clone this repository
