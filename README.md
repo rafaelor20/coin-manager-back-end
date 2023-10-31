@@ -69,6 +69,58 @@ classDiagram
 
 ```
 
+## Endpoints
+
+POST "/auth/sign-in"
+Body: { email, password }
+Response: {
+    user: exclude(user, 'password'),
+    token,
+  };
+
+GET "/credits"
+Response:[
+        {
+          id,
+          user_id,
+          debtor,
+          amount,
+          createdAt,
+          payDate,
+        },
+      ] 
+
+POST "/credits/store"
+Body: { user_id, debtor, amount, payDate }
+Response: {
+        id,
+        user_id,
+        debtor,
+        amount,
+        createdAt,
+        payDate,
+      }
+
+GET "/credits/:creditId"
+Response: {
+        id,
+        user_id,
+        debtor,
+        amount,
+        createdAt,
+        payDate,
+      }
+
+DELETE "/credits/delete/:creditId"
+Response: {
+        id,
+        user_id,
+        debtor,
+        amount,
+        createdAt,
+        payDate,
+      }
+
 ## How to run for development
 
 1. Clone this repository

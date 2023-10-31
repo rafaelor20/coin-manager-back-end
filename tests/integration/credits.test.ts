@@ -147,7 +147,7 @@ describe('GET /credits/:creditId', () => {
 
       expect(response.status).toBe(httpStatus.OK);
       expect(response.body).toEqual({
-        id: expect.any(Number),
+        id: credit.id,
         user_id: credit.user_id,
         debtor: credit.debtor,
         amount: credit.amount,
