@@ -102,7 +102,7 @@ describe('GET /debts/:debtId', () => {
 
       expect(response.status).toBe(httpStatus.OK);
       expect(response.body).toEqual({
-        id: expect.any(Number),
+        id: debt.id,
         user_id: debt.user_id,
         creditor: debt.creditor,
         amount: debt.amount,

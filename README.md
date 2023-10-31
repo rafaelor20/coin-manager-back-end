@@ -121,6 +121,80 @@ Response: {
         payDate,
       }
 
+GET "/debts"
+Response: [
+        {
+          id,
+          user_id,
+          creditor,
+          amount,
+          createdAt,
+          payDate,
+        },
+      ]
+
+GET "/debts/:debtId"
+Response: {
+          id,
+          user_id,
+          creditor,
+          amount,
+          createdAt,
+          payDate,
+        }
+
+POST "/debts/store"
+Body: { user_id, creditor, amount, payDate }
+Response:  {
+          id,
+          user_id,
+          creditor,
+          amount,
+          createdAt,
+          payDate,
+        }
+
+DELETE "/debts/delete/:debtId"
+Response: {
+          id,
+          user_id,
+          creditor,
+          amount,
+          createdAt,
+          payDate,
+        }
+
+GET "/transactions/historic"
+Response: [
+        {
+          id,
+          user_id,
+          description,
+          amount,
+          date,
+          category,
+        },
+      ]
+
+POST "/transactions/store"
+Body: { description, amount, category }
+Response: {
+          id,
+          user_id,
+          description,
+          amount,
+          date,
+          category,
+        }
+
+POST "/users"
+Body: { username, email, password }
+Response: {
+          id,
+          email,
+          username,
+        }
+
 ## How to run for development
 
 1. Clone this repository
