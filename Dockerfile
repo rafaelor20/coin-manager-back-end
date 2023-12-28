@@ -1,5 +1,5 @@
 # busca imagem base do node
-FROM node
+FROM node:16
 
 # usa essa pasta como diretório de trabalho (tipo um CD)
 WORKDIR /usr/src

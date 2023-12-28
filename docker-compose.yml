@@ -14,7 +14,7 @@ services:
     container_name: projeto22-autoral-backend
     build: . #Dockerfile do node se encontra na pasta atual
     ports:
-      - 1234:5000
+      - 5000:5000
     depends_on:
       - db # só sobe quando o postgres tiver no ar
     env_file:
